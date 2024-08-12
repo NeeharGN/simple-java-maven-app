@@ -38,8 +38,11 @@ public class AppTest {
         // Define the expected output
         String expectedOutput = "Hello World!" + System.lineSeparator() + " Welcome to pipeline";
 
+        // Get the actual output and trim any trailing newlines
+        String actualOutput = outContent.toString().trim();
+
         // Compare the actual output with the expected output
-        assertEquals(expectedOutput, outContent.toString());
+        assertEquals(expectedOutput, actualOutput);
     }
 
     @After
