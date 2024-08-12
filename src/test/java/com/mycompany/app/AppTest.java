@@ -10,18 +10,19 @@ import static org.junit.Assert.*;
 /**
  * Unit test for simple App.
  */
-public class AppTest
-{
+public class AppTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Before
     public void setUpStreams() {
+        // Redirect System.out to capture output
         System.setOut(new PrintStream(outContent));
     }
 
     @Test
     public void testAppConstructor() {
+        // Test if the constructor works without throwing exceptions
         try {
             new App();
         } catch (Exception e) {
@@ -30,19 +31,20 @@ public class AppTest
     }
 
     @Test
-    public void testAppMain()
-    {
+    public void testAppMain() {
+        // Run the main method
         App.main(null);
-        try {
-            assertEquals("Hello World!\n Welcome to pipeline", outContent.toString());
-        } catch (AssertionError e) {
-            fail("\"message\" is not \"Hello World!\"");
-        }
+
+        // Define the expected output
+        String expectedOutput = "Hello World!" + System.lineSeparator() + " Welcome to pipeline";
+
+        // Compare the actual output with the expected output
+        assertEquals(expectedOutput, outContent.toString());
     }
 
     @After
     public void cleanUpStreams() {
+        // Restore original System.out
         System.setOut(null);
     }
-
 }
